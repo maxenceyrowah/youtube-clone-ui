@@ -25,7 +25,9 @@
     "arrow-body-style": "off",
     "prefer-arrow-callback": "off",
     "quotes": ["error", "double"],
-    "no-console": "warn"
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off",
+    "no-var-requires": true
   },
   "settings": {
     "import/resolver": {
