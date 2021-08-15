@@ -1,66 +1,45 @@
 import React from "react";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@material-ui/core/AppBar";
-import { Toolbar, styled, IconButton, Avatar, Tooltip } from "@material-ui/core";
+import { Toolbar, styled, IconButton, Avatar, Tooltip, Badge, AppBar as MuiAppBar } from "@material-ui/core";
 import { Menu, AddAlert, VideoCall, Person } from "@material-ui/icons";
-import Badge from "@material-ui/core/Badge";
 
 import YoutubeLogo from "shared/assests/logo/youtube-logo-dark.png";
+
 import ToogleDarkMode from "./ToogleDarkMode";
-import YoutubeApps from "./YoutubeApp";
+import YoutubeAppsModal from "./YoutubeAppModal";
+import SearchBar from "./SearchBar";
 
-const drawerWidth = 240;
-
-interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-}
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open"
-})<AppBarProps>(({ theme, open }) => ({
+const AppBar = styled(MuiAppBar)(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
   })
 }));
 
-const Header: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
+type Props = {
+  handleDrawerOpen: () => void;
+};
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+const Header: React.FC<Props> = ({ handleDrawerOpen }: Props) => {
   return (
     <>
-      <AppBar position="fixed" open={open} className="dark:bg-black">
+      <AppBar position="fixed" sx={{ zIndex: 1, backgroundColor: "#202020", boxShadow: 0, height: 60 }}>
         <Toolbar className="flex justify-between items-center">
           <div className="flex justify-center items-center">
-            <div>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                edge="start"
-                sx={{
-                  ...(open && { display: "none" })
-                }}
-              >
+            <div className="hamburger_menuIocn">
+              <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
                 <Menu />
               </IconButton>
             </div>
-            <div>
+            <div className="ml-2">
               <img src={YoutubeLogo} alt="Logo Youtube" style={{ height: 60 }} />
             </div>
           </div>
-          <div className="center">Search Bar</div>
+
+          <div className="search-bar">
+            <SearchBar />
+          </div>
+
           <div className="flex justify-center items-center gap-2">
             <div className="toogle_swicth">
               <ToogleDarkMode />
@@ -71,7 +50,7 @@ const Header: React.FC = () => {
               </Tooltip>
             </div>
             <div className="apps_menu">
-              <YoutubeApps />
+              <YoutubeAppsModal />
             </div>
             <div className="notification">
               <Tooltip title="Notifications">

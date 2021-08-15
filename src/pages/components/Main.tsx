@@ -1,8 +1,5 @@
-import * as React from "react";
-import { styled } from "@material-ui/core/styles";
-import Box from "@material-ui/core/Box";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
+import React, { useState } from "react";
+import { styled, Box, CssBaseline, Typography } from "@material-ui/core";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -17,11 +14,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const Main: React.FC = () => {
+  const [isopen, setIsOpen] = useState<boolean>(false);
+
+  const handleDrawerOpen = () => {
+    setIsOpen(!isopen);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Header />
-      <Sidebar />
+      <Header handleDrawerOpen={handleDrawerOpen} />
+      <Sidebar isopen={isopen} />
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }} className="dark:bg-black">
         <DrawerHeader />

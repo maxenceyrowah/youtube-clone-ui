@@ -2,15 +2,17 @@ import * as React from "react";
 import { Box, Avatar, Menu, MenuItem, ListItemIcon, Divider, IconButton, Tooltip } from "@material-ui/core";
 import { Apps, Settings, Logout, PersonAdd } from "@material-ui/icons";
 
-const YoutubeApps: React.FC = () => {
+const YoutubeAppsModal: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
@@ -73,4 +75,4 @@ const YoutubeApps: React.FC = () => {
   );
 };
 
-export default YoutubeApps;
+export default YoutubeAppsModal;
