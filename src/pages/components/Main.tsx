@@ -14,21 +14,21 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const Main: React.FC = () => {
-  const [isopen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleDrawerOpen = () => {
-    setIsOpen(!isopen);
+    setIsOpen(!isOpen);
   };
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Header handleDrawerOpen={handleDrawerOpen} />
-      <Sidebar isopen={isopen} />
+      <Sidebar isOpen={isOpen} />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }} className="dark:bg-black">
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph className="text-blue-600 dark:text-white">
+        <Typography paragraph className="text-blue-600">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
           magna aliqua. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
           imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum

@@ -16,7 +16,6 @@ const SearchBar: React.FC = () => {
           boxShadow: 0,
           m: "auto"
         }}
-        className="dark:bg-white"
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
@@ -28,7 +27,7 @@ const SearchBar: React.FC = () => {
           <Search />
         </IconButton>
       </Paper>
-      <IconButton sx={{ ml: "10px" }} className="dark:bg-white">
+      <IconButton sx={{ ml: "10px" }}>
         <Mic />
       </IconButton>
     </Box>

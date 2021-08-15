@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  styled,
-  Theme,
-  CSSObject,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  List,
-  Drawer as MuiDrawer
-} from "@material-ui/core";
+import { styled, Theme, CSSObject, ListItem, ListItemIcon, List, Drawer as MuiDrawer } from "@material-ui/core";
 
 import { SIDEBAR_ITEMS } from "pages/utils/constants/default-constant";
 
@@ -20,7 +11,9 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen
   }),
   overflowX: "hidden",
-  top: 55
+  top: 55,
+  backgroundColor: "#202020",
+  color: "#fff"
 });
 const closedMixin = (theme: Theme): CSSObject => ({
   transition: theme.transitions.create("width", {
@@ -28,11 +21,13 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: `calc(${theme.spacing(6)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(9)} + 1px)`
+    width: `calc(${theme.spacing(11)} + 1px)`
   },
-  top: 55
+  top: 55,
+  backgroundColor: "#202020",
+  color: "#fff"
 });
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" })(({ theme, open }) => ({
   width: drawerWidth,
@@ -52,17 +47,33 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
 }));
 
 type Props = {
-  isopen: boolean;
+  isOpen: boolean;
 };
 
-const Sidebar: React.FC<Props> = ({ isopen }: Props) => {
+const Sidebar: React.FC<Props> = ({ isOpen }: Props) => {
   return (
-    <Drawer variant="permanent" open={isopen}>
+    <Drawer variant="permanent" open={isOpen}>
       <List>
         {SIDEBAR_ITEMS.map((item) => (
-          <ListItem button key={item.id}>
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} />
+          <ListItem
+            button
+            key={item.id}
+            sx={
+              !isOpen
+                ? { display: "flex", flexDirection: "column", alignItems: "baseline", pb: "10px", pl: "29px" }
+                : { pb: "10px", pl: "29px" }
+            }
+          >
+            <ListItemIcon
+              sx={
+                isOpen
+                  ? { minWidth: 51, marginLeft: "2px", color: `${item.unactive}` }
+                  : { minWidth: 40, marginLeft: "3px", color: `${item.active}` }
+              }
+            >
+              {item.icon}
+            </ListItemIcon>
+            <span style={!isOpen ? { fontSize: "11px", marginLeft: `${item.position}` } : {}}>{item.label}</span>
           </ListItem>
         ))}
       </List>

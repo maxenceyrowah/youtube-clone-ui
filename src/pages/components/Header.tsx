@@ -27,11 +27,17 @@ const Header: React.FC<Props> = ({ handleDrawerOpen }: Props) => {
         <Toolbar className="flex justify-between items-center">
           <div className="flex justify-center items-center">
             <div className="hamburger_menuIocn">
-              <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start">
-                <Menu />
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                sx={{ m: "auto" }}
+              >
+                <Menu fontSize="medium" />
               </IconButton>
             </div>
-            <div className="ml-2">
+            <div className="logo_youtube">
               <img src={YoutubeLogo} alt="Logo Youtube" style={{ height: 60 }} />
             </div>
           </div>
